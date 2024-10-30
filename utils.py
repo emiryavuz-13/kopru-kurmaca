@@ -151,3 +151,22 @@ def oyun_baslangic_fonk():
     resim_label=tk.Label(butun)
     resim_label.place(x=600,y=300)
     butun.mainloop()
+
+def basla_fonk():
+    global birinci_oyuncu_isim,ikinci_oyuncu_isim,yapay_zeka_tipi
+
+    birinci_oyuncu_isim = tk.Entry.get(birinci_oyuncu_entry)
+    ikinci_oyuncu_isim = tk.Entry.get(ikinci_oyuncu_entry)
+    if (len(birinci_oyuncu_isim)==0 or birinci_oyuncu_isim==" ")    or ((len(ikinci_oyuncu_isim)==0 or ikinci_oyuncu_isim[0]==" ") and yapay_zeka_tipi=="yok"):
+        messagebox.showwarning("Uyarı","Lütfen oyuncu isimlerini giriniz")
+    elif harita_tip=="secilmedi":
+        messagebox.showwarning("Uyarı","Lütfen harita tipini seçiniz")
+    elif harita_buyukluk==0:
+        messagebox.showwarning("Uyarı","Lütfen harita büyüklüğünü seçiniz")
+    else:
+        if yapay_zeka_tipi=="normal":
+            soru=messagebox.askquestion("Yapay zeka seçimi","Öğrenmiş yapay zeka aktif edilsin mi?",)
+            if soru=="yes":
+                yapay_zeka_tipi="öğrenmiş"
+
+        butun.destroy()
