@@ -119,3 +119,117 @@ def yapay_zeka_secim_fonk(secim):
                     secim_liste_2.append([secim_liste_2[-1][0] + 1, secim - 1])
             yapay_zeka_secim_fonk(secim-1)
 
+def ogrenmis_yapay_zeka_secim_fonk(secim):
+    global yapay_zeka_bool, ilk_secim,secim_sayisi
+    ilk_secim_list=[]
+    skor=0
+    uzunluk=len(skor_matrix)
+
+    while yapay_zeka_bool:#İlk değeri seç ve bi daha buraya girme
+        for i in range(uzunluk):
+            if skor_matrix[i][uzunluk-1]>=0:
+                skor += skor_matrix[i][uzunluk - 1]
+                ilk_secim_list.append(skor)
+            else:
+                ilk_secim_list.append(-1)
+        random_sayi = random.randint(0, skor)
+        for i in range(len(ilk_secim_list)):
+
+            if ilk_secim_list[i]>=random_sayi:
+                ilk_secim=i
+                break
+
+        secim_liste_2.append([ilk_secim, secim])
+        yapay_zeka_bool=False
+
+
+    if secim<secim_sayisi: #eğer yeterli seçim yaptıysak return et
+        return
+
+
+    else:  #bulunduuğumuz karelerin sol alt,orta ve üst bloklarına bak taş var mı diye. Var ise orayı seçmiyeceğiz
+
+        olasilik_liste=[]
+        skor=0
+
+        if secim_liste_2[-1][0]==0: #eğer en üstte isek sadece bir sol hizamızdaki ve bir sol altımızdakine bakıcaz ve ağırlığına göre alıcağız
+
+            if skor_matrix[secim_liste_2[-1][0]][secim - 1] < 0:
+                olasilik_liste.append(-1)
+            else:
+                skor += skor_matrix[secim_liste_2[-1][0]][secim - 1]
+                olasilik_liste.append(skor)
+
+            if skor_matrix[secim_liste_2[-1][0] + 1][secim - 1] < 0:
+                olasilik_liste.append(-1)
+            else:
+                skor += skor_matrix[secim_liste_2[-1][0] + 1][secim - 1]
+                olasilik_liste.append(skor)
+
+            random_sayi=random.randint(0,skor)
+
+            for i in range(len(olasilik_liste)): #Ağırlığına göre seç
+                if olasilik_liste[i]>=random_sayi:
+                    if i==0:
+                        secim_liste_2.append([secim_liste_2[-1][0], secim - 1]) #aynı hizada seçilecek
+                    elif i==1:
+                        secim_liste_2.append([secim_liste_2[-1][0] + 1, secim - 1]) #bir alt satırı seç
+                    break
+            ogrenmis_yapay_zeka_secim_fonk(secim - 1)  # Recursive et
+
+        elif secim_liste_2[-1][0]==uzunluk-1: #eğer en alt satırı seçtiysek
+            if skor_matrix[secim_liste_2[-1][0]][secim - 1] < 0:
+                olasilik_liste.append(-1)
+            else:
+                skor += skor_matrix[secim_liste_2[-1][0]][secim - 1]
+                olasilik_liste.append(skor)
+
+            if skor_matrix[secim_liste_2[-1][0] - 1][secim - 1] < 0:
+                olasilik_liste.append(-1)
+            else:
+                skor += skor_matrix[secim_liste_2[-1][0] - 1][secim - 1]
+                olasilik_liste.append(skor)
+
+            random_sayi = random.randint(0, skor)
+            print("Şu değer için dönüyorum ",secim-1,"|| olasılık listem:",olasilik_liste,"|| Rasgele sayım:",random_sayi)
+            for i in range(len(olasilik_liste)):  # Ağırlığına göre seç
+                if olasilik_liste[i] >= random_sayi:
+                    if i == 0:
+                        secim_liste_2.append([secim_liste_2[-1][0], secim - 1])  # aynı hizada seçilecek
+                    elif i == 1:
+                        secim_liste_2.append([secim_liste_2[-1][0] - 1, secim - 1])  # bir alt satırı seç
+                    break
+            ogrenmis_yapay_zeka_secim_fonk(secim - 1)  # Recursive et
+        else:
+            if skor_matrix[secim_liste_2[-1][0] - 1][secim - 1] < 0:
+                olasilik_liste.append(-1)
+            else:
+                skor += skor_matrix[secim_liste_2[-1][0] - 1][secim - 1]
+                olasilik_liste.append(skor)
+
+            if skor_matrix[secim_liste_2[-1][0]][secim - 1] < 0:
+                olasilik_liste.append(-1)
+            else:
+                skor += skor_matrix[secim_liste_2[-1][0]][secim - 1]
+                olasilik_liste.append(skor)
+
+            if skor_matrix[secim_liste_2[-1][0] + 1][secim - 1] < 0:
+                olasilik_liste.append(-1)
+            else:
+                skor += skor_matrix[secim_liste_2[-1][0] + 1][secim - 1]
+                olasilik_liste.append(skor)
+
+            random_sayi = random.randint(0, skor)
+            print("Şu değer için dönüyorum ", secim - 1, "|| olasılık listem:", olasilik_liste, "|| Rasgele sayım:",
+                  random_sayi)
+            for i in range(len(olasilik_liste)):  # Ağırlığına göre seç
+                if olasilik_liste[i] >= random_sayi:
+                    if i == 0:
+                        secim_liste_2.append([secim_liste_2[-1][0] - 1, secim - 1])  # üst satır seçilecek
+                    elif i == 1:
+                        secim_liste_2.append([secim_liste_2[-1][0], secim - 1])  # aynı hizada seçilecek
+                    elif i == 2:
+                        secim_liste_2.append([secim_liste_2[-1][0] + 1, secim - 1])# bir alt satırı seç
+                    break
+            ogrenmis_yapay_zeka_secim_fonk(secim - 1)  # Recursive et
+
