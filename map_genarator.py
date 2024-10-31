@@ -23,3 +23,4 @@ def buyuk_harita_fonk():
     global harita_buyukluk
     harita_buyukluk=9
     resim_bastirici()
+
