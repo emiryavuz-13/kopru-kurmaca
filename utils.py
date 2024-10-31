@@ -186,3 +186,14 @@ def basla_fonk():
                 yapay_zeka_tipi="öğrenmiş"
 
         butun.destroy()
+
+def yapay_zeka_aktif_mi_fonk():
+    global yapay_zeka_tipi
+    if tk.IntVar.get(yapay_zeka_kontrolcusu)==0:
+        yapay_zeka_tipi="yok"
+        ikinci_oyuncu_entry.config(state="normal")
+
+    else:
+        yapay_zeka_tipi="normal"
+        ikinci_oyuncu_entry.config(state="disabled")
+
