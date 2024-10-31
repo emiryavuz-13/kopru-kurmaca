@@ -80,28 +80,44 @@ def matrix_okuma(dosyam):
     skor_matrixx.append(denetim)
     return skor_matrixx
 
-def resim_bastirici():
-    global harita_tip,harita_buyukluk,resim_label
-    if harita_tip=="boş" and harita_buyukluk==5:
-        resim_label.config(image=resim00)
-    elif harita_tip=="seyrek" and harita_buyukluk==5:
-        resim_label.config(image=resim01)
-    elif harita_tip=="taşlı" and harita_buyukluk==5:
-        resim_label.config(image=resim02)
+def matrix_secim():
+    global harita_buyukluk, matrix
+    if harita_buyukluk==5:
+        matrix=\
+        [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+        ]
+    elif harita_buyukluk==7:
+        matrix=\
+        [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+        ]
+    elif harita_buyukluk==9:
+        matrix=\
+            [
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ]
+    denetim_matrix=copy.deepcopy(matrix)
+    return matrix,denetim_matrix
 
-    elif harita_tip=="boş" and harita_buyukluk==7:
-        resim_label.config(image=resim10)
-    elif harita_tip=="seyrek" and harita_buyukluk==7:
-        resim_label.config(image=resim11)
-    elif harita_tip=="taşlı" and harita_buyukluk==7:
-        resim_label.config(image=resim12)
-
-    elif harita_tip=="boş" and harita_buyukluk==9:
-        resim_label.config(image=resim20)
-    elif harita_tip=="seyrek" and harita_buyukluk==9:
-        resim_label.config(image=resim21)
-    elif harita_tip=="taşlı" and harita_buyukluk==9:
-        resim_label.config(image=resim22)
 
 def oyun_baslangic_fonk():
     global yapay_zeka_kontrolcusu,ikinci_oyuncu_entry,birinci_oyuncu_entry,butun,resim00,resim01,resim02,resim10,resim11,resim12,resim20,resim21,resim22,resim_label

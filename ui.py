@@ -56,7 +56,7 @@ def oyun_harita_7x7_fonk():
                 if matrix[i][j]>=1:
                     buton_list[i][j].config(bg="pink")
         yol_var_mi_fonk(0,0)
-        dosya2=open("matrix_2.txt", "r")
+        dosya2=open("matrix/matrix_2.txt", "r")
         skor_matrix_yazdir = matrix_okuma(dosya2)
         dosya2.close()
         print("!!",skor_matrix_yazdir)
@@ -78,7 +78,7 @@ def oyun_harita_7x7_fonk():
             for i in secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]]-=1
 
-        dosya1 = open("matrix_2.txt", "w")
+        dosya1 = open("matrix/matrix_2.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
 
@@ -139,7 +139,7 @@ def oyun_harita_5x5_fonk():
                 if matrix[i][j]>=1:
                     buton_list[i][j].config(bg="pink")
         yol_var_mi_fonk(0,0)
-        dosya2=open("matrix_1.txt", "r")
+        dosya2=open("matrix/matrix_1.txt", "r")
         skor_matrix_yazdir = matrix_okuma(dosya2)
         dosya2.close()
         print("!!",skor_matrix_yazdir)
@@ -161,7 +161,7 @@ def oyun_harita_5x5_fonk():
             for i in secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]]-=1
 
-        dosya1 = open("matrix_1.txt", "w")
+        dosya1 = open("matrix/matrix_1.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
 
@@ -229,7 +229,7 @@ def oyun_harita_9x9_fonk():
                 if matrix[i][j]>=1:
                     buton_list[i][j].config(bg="pink")
         yol_var_mi_fonk(0,0)
-        dosya2=open("matrix_3.txt", "r")
+        dosya2=open("matrix/matrix_3.txt", "r")
         skor_matrix_yazdir = matrix_okuma(dosya2)
         dosya2.close()
         print("!!",skor_matrix_yazdir)
@@ -251,7 +251,7 @@ def oyun_harita_9x9_fonk():
             for i in secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]]-=1
 
-        dosya1 = open("matrix_3.txt", "w")
+        dosya1 = open("matrix/matrix_3.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
 
