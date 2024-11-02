@@ -1,3 +1,7 @@
+from utils import *
+from btn_func import *
+from ui import *
+
 def resim_bastirici():
     global harita_tip,harita_buyukluk,resim_label
     if harita_tip=="boş" and harita_buyukluk==5:

@@ -1,3 +1,5 @@
+import random
+
 def yapay_zeka_secim_fonk(secim):
     global yapay_zeka_bool,secim_sayisi,tekrar_yok
 

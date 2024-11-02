@@ -1,3 +1,5 @@
+from utils import *
+
 #Buton için fonksiyonlar
 def degistir00():
 

@@ -1,8 +1,9 @@
-import tkinter as tk
 from PIL import Image,ImageTk
 from tkinter import messagebox
+from utils import *
+from ui import *
+import tkinter as tk
 import copy
-import random
 def izin_var_mi(i,j,oyuncu): #1. oyuncu için butona basma hakkı var mı sorgusu
     global secim_sayisi
 

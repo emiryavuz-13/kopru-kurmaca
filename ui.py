@@ -1,3 +1,5 @@
+from btn_func import *
+import tkinter as tk
 def oyun_harita_7x7_fonk():
     global buton_list,secim_sayisi
     buton_list = []

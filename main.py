@@ -1,9 +1,5 @@
-import tkinter as tk
-from PIL import Image,ImageTk
-from tkinter import messagebox
-import copy
-import random
-
+from ai import *
+from map_genarator import *
 
 secim_liste_1=[]
 
