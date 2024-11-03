@@ -862,8 +862,8 @@ def oyun_harita_7x7_fonk():
     #tahta.state("zoomed") #ful ekran açar
 
     gec_liste = []
-    rex = 600
-    rey = 200
+    rex = 605
+    rey = 145
     isimler_list = ["00", "01", "02", "03", "04", "05", "06",
                     "10", "11", "12", "13", "14", "15", "16",
                     "20", "21", "22", "23", "24", "25", "26",
@@ -975,8 +975,8 @@ def oyun_harita_5x5_fonk():
     #tahta.state("zoomed") #ful ekran açar
 
     gec_liste = []
-    rex = 650
-    rey = 200
+    rex = 670
+    rey = 230
     isimler_list = ["00", "01", "02", "03", "04",
                     "10", "11", "12", "13", "14",
                     "20", "21", "22", "23", "24",
@@ -1084,8 +1084,8 @@ def oyun_harita_9x9_fonk():
     #tahta.state("zoomed") #ful ekran açar
 
     gec_liste = []
-    rex = 550
-    rey = 50
+    rex = 540
+    rey = 53
     isimler_list = ["00", "01", "02", "03", "04", "05", "06", "07", "08",
                     "10", "11", "12", "13", "14", "15", "16", "17", "18",
                     "20", "21", "22", "23", "24", "25", "26", "27", "28",
