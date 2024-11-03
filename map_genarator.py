@@ -3,6 +3,7 @@ import random
 import config
 from btn_func import *
 from utils import yol_var_mi_fonk, matrix_okuma
+from PIL import Image, ImageTk  # Arkaplan resmini eklemek için PIL kullanıyoruz
 
 import tkinter as tk
 
@@ -847,7 +848,17 @@ def oyun_harita_7x7_fonk():
 
     #tahta.resizable(False,False)  #ilk taraf x ekseni, 2. taraf y ekseni ile oynayıp oynanamayacağını belirliyor.
     tahta.geometry("1680x1050+500+200")  #Sol taraf açılır pencere boyutu, sağ taraf bilgisayarın neresinde açılacağı
+    # Canvas oluştur ve arkaplan resmini yükle
+    canvas = tk.Canvas(tahta, width=1680, height=1050)
+    canvas.pack(fill="both", expand=True)
 
+    # Arkaplan resmini yükle
+    bg_image = Image.open("img/bg.png")
+    bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)  # ANTIALIAS yerine LANCZOS kullanıyoruz
+    bg_photo = ImageTk.PhotoImage(bg_image)
+
+    # Canvas'a arkaplan resmini yerleştir
+    canvas.create_image(0, 0, image=bg_photo, anchor="nw")
     #tahta.state("zoomed") #ful ekran açar
 
     gec_liste = []
@@ -889,6 +900,13 @@ def oyun_harita_7x7_fonk():
             if c.matrix[i][j] == -1:
                 c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
 
+    if c.oyuncu == 1:
+        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
+        label_harita.place(x=50, y=20)
+    if c.oyuncu == 2 and not c.oyun_sonu_tahta:
+        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
+        label_harita.place(x=1400, y=20)
+
     if c.oyun_sonu_tahta:
         for i in range(len(c.matrix)):
             for j in range(len(c.matrix)):
@@ -907,18 +925,30 @@ def oyun_harita_7x7_fonk():
                 ortadan_secmis_mi = True
 
         if c.yol_var_mi:
+            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kazandınız",
+                                    font="Verdana 22")
+            label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kazandınız...")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] += 1
         elif ortadan_secmis_mi:
-            messagebox.showinfo("Durum", "Kaybettiniz")
+            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+                                    font="Verdana 22")
+            label_harita.place(x=750, y=50)
+            messagebox.showinfo("Durum", "Kaybettiniz, kesişim yok")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] -= 1
+        else:
+            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+                                    font="Verdana 22")
+            label_harita.place(x=750, y=50)
+            messagebox.showinfo("Durum", "Kaybettiniz, kimse ortaya gelemedi")
 
         dosya1 = open("matrix/matrix_2.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
 
+    label_harita.place(x=400, y=50)
     tahta.mainloop()
 
 
@@ -929,6 +959,18 @@ def oyun_harita_5x5_fonk():
 
     #tahta.resizable(False,False)  #ilk taraf x ekseni, 2. taraf y ekseni ile oynayıp oynanamayacağını belirliyor.
     tahta.geometry("1680x1050+500+200")  #Sol taraf açılır pencere boyutu, sağ taraf bilgisayarın neresinde açılacağı
+
+    # Canvas oluştur ve arkaplan resmini yükle
+    canvas = tk.Canvas(tahta, width=1680, height=1050)
+    canvas.pack(fill="both", expand=True)
+
+    # Arkaplan resmini yükle
+    bg_image = Image.open("img/bg.png")
+    bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)  # ANTIALIAS yerine LANCZOS kullanıyoruz
+    bg_photo = ImageTk.PhotoImage(bg_image)
+
+    # Canvas'a arkaplan resmini yerleştir
+    canvas.create_image(0, 0, image=bg_photo, anchor="nw")
 
     #tahta.state("zoomed") #ful ekran açar
 
@@ -969,6 +1011,12 @@ def oyun_harita_5x5_fonk():
             if c.matrix[i][j] == -1:
                 c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
 
+    if c.oyuncu == 1:
+        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
+        label_harita.place(x=50, y=20)
+    if c.oyuncu == 2 and not c.oyun_sonu_tahta:
+        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
+        label_harita.place(x=1400, y=20)
     if c.oyun_sonu_tahta:
         for i in range(len(c.matrix)):
             for j in range(len(c.matrix)):
@@ -987,17 +1035,29 @@ def oyun_harita_5x5_fonk():
                 ortadan_secmis_mi = True
 
         if c.yol_var_mi:
+            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kazandınız",
+                                    font="Verdana 22")
+            label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kazandınız...")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] += 1
         elif ortadan_secmis_mi:
-            messagebox.showinfo("Durum", "Kaybettiniz")
+            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+                                    font="Verdana 22")
+            label_harita.place(x=750, y=50)
+            messagebox.showinfo("Durum", "Kaybettiniz, kesişim yok")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] -= 1
+        else:
+            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+                                    font="Verdana 22")
+            label_harita.place(x=750, y=50)
+            messagebox.showinfo("Durum", "Kaybettiniz, kimse ortaya gelemedi")
 
         dosya1 = open("matrix/matrix_1.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
+
 
     tahta.mainloop()
 
@@ -1010,6 +1070,17 @@ def oyun_harita_9x9_fonk():
     #tahta.resizable(False,False)  #ilk taraf x ekseni, 2. taraf y ekseni ile oynayıp oynanamayacağını belirliyor.
     tahta.geometry("1680x1050+500+200")  #Sol taraf açılır pencere boyutu, sağ taraf bilgisayarın neresinde açılacağı
 
+    # Canvas oluştur ve arkaplan resmini yükle
+    canvas = tk.Canvas(tahta, width=1680, height=1050)
+    canvas.pack(fill="both", expand=True)
+
+    # Arkaplan resmini yükle
+    bg_image = Image.open("img/bg.png")
+    bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)  # ANTIALIAS yerine LANCZOS kullanıyoruz
+    bg_photo = ImageTk.PhotoImage(bg_image)
+
+    # Canvas'a arkaplan resmini yerleştir
+    canvas.create_image(0, 0, image=bg_photo, anchor="nw")
     #tahta.state("zoomed") #ful ekran açar
 
     gec_liste = []
@@ -1066,12 +1137,11 @@ def oyun_harita_9x9_fonk():
                 c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
 
     if c.oyuncu == 1:
-        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="1. Oyuncu:" + c.birinci_oyuncu_isim , font="Verdana 22")
-    elif c.oyuncu == 2:
+        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
+        label_harita.place(x=50, y=20)
+    if c.oyuncu == 2 and not c.oyun_sonu_tahta:
         label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
-    elif config.oyun_sonu_tahta:
-        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
-
+        label_harita.place(x=1400, y=20)
 
     if c.oyun_sonu_tahta:
         for i in range(len(c.matrix)):
@@ -1093,18 +1163,21 @@ def oyun_harita_9x9_fonk():
         if c.yol_var_mi:
             label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kazandınız",
                                     font="Verdana 22")
+            label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kazandınız...")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] += 1
         elif ortadan_secmis_mi:
             label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
                                     font="Verdana 22")
+            label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kaybettiniz, kesişim yok")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] -= 1
         else:
             label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
                                     font="Verdana 22")
+            label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kaybettiniz, kimse ortaya gelemedi")
 
 
@@ -1112,5 +1185,5 @@ def oyun_harita_9x9_fonk():
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
 
-    label_harita.place(x=400, y=50)
+
     tahta.mainloop()
