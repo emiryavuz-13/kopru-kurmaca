@@ -71,8 +71,8 @@ def basla_fonk():
 
     birinci_oyuncu_isim = tk.Entry.get(birinci_oyuncu_entry)
     ikinci_oyuncu_isim = tk.Entry.get(ikinci_oyuncu_entry)
-    if (len(birinci_oyuncu_isim) == 0 or birinci_oyuncu_isim == " ") or (
-            (len(ikinci_oyuncu_isim) == 0 or ikinci_oyuncu_isim[0] == " ") and yapay_zeka_tipi == "yok"):
+    if not (not (len(birinci_oyuncu_isim) == 0 or birinci_oyuncu_isim == " ") and not (
+            (len(ikinci_oyuncu_isim) == 0 or ikinci_oyuncu_isim[0] == " ") and yapay_zeka_tipi == "yok")):
         messagebox.showwarning("Uyarı", "Lütfen oyuncu isimlerini giriniz")
     elif harita_tip == "secilmedi":
         messagebox.showwarning("Uyarı", "Lütfen harita tipini seçiniz")

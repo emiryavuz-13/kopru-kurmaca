@@ -1,4 +1,6 @@
 import random
+
+import config
 from btn_func import *
 from utils import yol_var_mi_fonk, matrix_okuma
 
@@ -1063,6 +1065,14 @@ def oyun_harita_9x9_fonk():
             if c.matrix[i][j] == -1:
                 c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
 
+    if c.oyuncu == 1:
+        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="1. Oyuncu:" + c.birinci_oyuncu_isim , font="Verdana 22")
+    elif c.oyuncu == 2:
+        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
+    elif config.oyun_sonu_tahta:
+        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
+
+
     if c.oyun_sonu_tahta:
         for i in range(len(c.matrix)):
             for j in range(len(c.matrix)):
@@ -1081,16 +1091,26 @@ def oyun_harita_9x9_fonk():
                 ortadan_secmis_mi = True
 
         if c.yol_var_mi:
+            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kazandınız",
+                                    font="Verdana 22")
             messagebox.showinfo("Durum", "Kazandınız...")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] += 1
         elif ortadan_secmis_mi:
-            messagebox.showinfo("Durum", "Kaybettiniz")
+            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+                                    font="Verdana 22")
+            messagebox.showinfo("Durum", "Kaybettiniz, kesişim yok")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] -= 1
+        else:
+            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+                                    font="Verdana 22")
+            messagebox.showinfo("Durum", "Kaybettiniz, kimse ortaya gelemedi")
+
 
         dosya1 = open("matrix/matrix_3.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
 
+    label_harita.place(x=400, y=50)
     tahta.mainloop()
