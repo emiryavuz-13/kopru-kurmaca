@@ -1,69 +1,47 @@
-from utils import *
+
+import random
 from btn_func import *
-from ui import *
+from utils import yol_var_mi_fonk,matrix_okuma
+
+import tkinter as tk
 
 def resim_bastirici():
-    global harita_tip,harita_buyukluk,resim_label
-    if harita_tip=="boş" and harita_buyukluk==5:
-        resim_label.config(image=resim00)
-    elif harita_tip=="seyrek" and harita_buyukluk==5:
-        resim_label.config(image=resim01)
-    elif harita_tip=="taşlı" and harita_buyukluk==5:
-        resim_label.config(image=resim02)
+    print(c.harita_tip)
+    if c.harita_tip=="boş" and c.harita_buyukluk==5:
+        c.resim_label.config(image=c.resim00)
+    elif c.harita_tip=="seyrek" and c.harita_buyukluk==5:
+        c.resim_label.config(image=c.resim01)
+    elif c.harita_tip=="taşlı" and c.harita_buyukluk==5:
+        c.resim_label.config(image=c.resim02)
 
-    elif harita_tip=="boş" and harita_buyukluk==7:
-        resim_label.config(image=resim10)
-    elif harita_tip=="seyrek" and harita_buyukluk==7:
-        resim_label.config(image=resim11)
-    elif harita_tip=="taşlı" and harita_buyukluk==7:
-        resim_label.config(image=resim12)
+    elif c.harita_tip=="boş" and c.harita_buyukluk==7:
+        c.resim_label.config(image=c.resim10)
+    elif c.harita_tip=="seyrek" and c.harita_buyukluk==7:
+        c.resim_label.config(image=c.resim11)
+    elif c.harita_tip=="taşlı" and c.harita_buyukluk==7:
+        c.resim_label.config(image=c.resim12)
 
-    elif harita_tip=="boş" and harita_buyukluk==9:
-        resim_label.config(image=resim20)
-    elif harita_tip=="seyrek" and harita_buyukluk==9:
-        resim_label.config(image=resim21)
-    elif harita_tip=="taşlı" and harita_buyukluk==9:
-        resim_label.config(image=resim22)
-def bos_deniz_fonk():
-    global harita_tip
-    harita_tip="boş"
-    resim_bastirici()
-def seyrek_tasli_deniz_fonk():
-    global harita_tip
-    harita_tip="seyrek"
-    resim_bastirici()
-def tasli_deniz_fonk():
-    global harita_tip
-    harita_tip="taşlı"
-    resim_bastirici()
-
-def kucuk_harita_fonk():
-    global harita_buyukluk
-    harita_buyukluk=5
-    resim_bastirici()
-def orta_harita_fonk():
-    global harita_buyukluk
-    harita_buyukluk=7
-    resim_bastirici()
-def buyuk_harita_fonk():
-    global harita_buyukluk
-    harita_buyukluk=9
-    resim_bastirici()
+    elif c.harita_tip=="boş" and c.harita_buyukluk==9:
+        c.resim_label.config(image=c.resim20)
+    elif c.harita_tip=="seyrek" and c.harita_buyukluk==9:
+        c.resim_label.config(image=c.resim21)
+    elif c.harita_tip=="taşlı" and c.harita_buyukluk==9:
+        c.resim_label.config(image=c.resim22)
 
 
 def random_secici_fonk_5x5():
     a=random.randint(0,100)
     if a<=40:
-        random_secici_liste[0]=0
+        c.random_secici_liste[0]=0
     elif 40<a<=80:
-        random_secici_liste[0]=1
+        c.random_secici_liste[0]=1
     elif 80<a:
-        random_secici_liste[0]=2
+        c.random_secici_liste[0]=2
 
 def tas_secici_fonk_5x5_seyrek():
     gecici_liste = []
-    print("!!!!",random_secici_liste[0])
-    if random_secici_liste[0]==0:
+    print("!!!!",c.random_secici_liste[0])
+    if c.random_secici_liste[0]==0:
 
         for i in range(1):
             index_sec=[0,1]
@@ -74,7 +52,7 @@ def tas_secici_fonk_5x5_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(2):
             index_sec=[1,2,3]
@@ -85,7 +63,7 @@ def tas_secici_fonk_5x5_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(1):
             index_sec=[3,4]
@@ -96,9 +74,9 @@ def tas_secici_fonk_5x5_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
-    elif random_secici_liste[0]==1:
+    elif c.random_secici_liste[0]==1:
 
         for i in range(2):
             index_sec = [0, 1]
@@ -109,7 +87,7 @@ def tas_secici_fonk_5x5_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(1):
             index_sec = [1, 2, 3]
@@ -120,7 +98,7 @@ def tas_secici_fonk_5x5_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(1):
             index_sec = [3, 4]
@@ -131,9 +109,9 @@ def tas_secici_fonk_5x5_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
-    elif random_secici_liste[0] == 2:
+    elif c.random_secici_liste[0] == 2:
 
         for i in range(1):
             index_sec = [0, 1]
@@ -144,7 +122,7 @@ def tas_secici_fonk_5x5_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(1):
             index_sec = [1, 2, 3]
@@ -155,7 +133,7 @@ def tas_secici_fonk_5x5_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(2):
             index_sec = [3, 4]
@@ -166,13 +144,16 @@ def tas_secici_fonk_5x5_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
+
+
+
 
 def tas_secici_fonk_5x5_tasli():
     gecici_liste = []
-    print("!!!!", random_secici_liste[0])
+    print("!!!!", c.random_secici_liste[0])
 
-    if random_secici_liste[0]==0:
+    if c.random_secici_liste[0]==0:
 
         for i in range(1):
             index_sec=[0,1]
@@ -183,7 +164,7 @@ def tas_secici_fonk_5x5_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(4):
             index_sec=[1,2,3]
@@ -194,7 +175,7 @@ def tas_secici_fonk_5x5_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(1):
             index_sec=[3,4]
@@ -205,9 +186,9 @@ def tas_secici_fonk_5x5_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
-    elif random_secici_liste[0]==1:
+    elif c.random_secici_liste[0]==1:
 
         for i in range(2):
             index_sec = [0,1]
@@ -218,7 +199,7 @@ def tas_secici_fonk_5x5_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(3):
             index_sec = [1, 2, 3]
@@ -229,7 +210,7 @@ def tas_secici_fonk_5x5_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(1):
             index_sec = [3, 4]
@@ -240,9 +221,9 @@ def tas_secici_fonk_5x5_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
-    elif random_secici_liste[0] == 2:
+    elif c.random_secici_liste[0] == 2:
 
         for i in range(2):
             index_sec = [0, 1]
@@ -253,7 +234,7 @@ def tas_secici_fonk_5x5_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(2):
             index_sec = [1, 2, 3]
@@ -264,7 +245,7 @@ def tas_secici_fonk_5x5_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(2):
             index_sec = [3, 4]
@@ -275,20 +256,20 @@ def tas_secici_fonk_5x5_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 def random_secici_fonk_7x7():
     a=random.randint(0,100)
     if a<=50:
-        random_secici_liste[0]=0
+        c.random_secici_liste[0]=0
     elif 50<a<=70:
-        random_secici_liste[0]=1
+        c.random_secici_liste[0]=1
     elif 70<a:
-        random_secici_liste[0]=2
+        c.random_secici_liste[0]=2
 
 def tas_secici_fonk_7x7_seyrek():
     gecici_liste = []
-    print("!!!!",random_secici_liste[0])
-    if random_secici_liste[0]==0:
+    print("!!!!",c.random_secici_liste[0])
+    if c.random_secici_liste[0]==0:
 
         for i in range(1):
             index_sec=[5,6]
@@ -298,7 +279,7 @@ def tas_secici_fonk_7x7_seyrek():
                 sayi=random.randint(0,6)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(2):
             index_sec=[3,4]
@@ -308,7 +289,7 @@ def tas_secici_fonk_7x7_seyrek():
                 sayi=random.randint(0,6)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(1):
             index_sec=[0,1]
@@ -318,7 +299,7 @@ def tas_secici_fonk_7x7_seyrek():
                 sayi=random.randint(0,6)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(3):
             index_sec=[2,3]
@@ -328,9 +309,9 @@ def tas_secici_fonk_7x7_seyrek():
                 sayi=random.randint(0,6)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
-    elif random_secici_liste[0]==1:
+    elif c.random_secici_liste[0]==1:
 
         for i in range(3):
             index_sec = [5,6]
@@ -341,7 +322,7 @@ def tas_secici_fonk_7x7_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(1):
             index_sec = [3,4]
@@ -352,7 +333,7 @@ def tas_secici_fonk_7x7_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(1):
             index_sec = [2, 3]
@@ -363,7 +344,7 @@ def tas_secici_fonk_7x7_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
         for i in range(2):
@@ -375,11 +356,11 @@ def tas_secici_fonk_7x7_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
 
-    elif random_secici_liste[0]==2:
+    elif c.random_secici_liste[0]==2:
 
         for i in range(2):
             index_sec = [2, 3]
@@ -390,7 +371,7 @@ def tas_secici_fonk_7x7_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(1):
             index_sec = [0, 1]
@@ -401,7 +382,7 @@ def tas_secici_fonk_7x7_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
         for i in range(1):
@@ -413,7 +394,7 @@ def tas_secici_fonk_7x7_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(3):
             index_sec = [3, 4]
@@ -424,13 +405,13 @@ def tas_secici_fonk_7x7_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
 def tas_secici_fonk_7x7_tasli():
     gecici_liste = []
-    print("!!!!",random_secici_liste[0])
-    if random_secici_liste[0]==0:
+    print("!!!!",c.random_secici_liste[0])
+    if c.random_secici_liste[0]==0:
 
         for i in range(2):
             index_sec=[5,6]
@@ -440,7 +421,7 @@ def tas_secici_fonk_7x7_tasli():
                 sayi=random.randint(0,6)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(3):
             index_sec=[3,4]
@@ -450,7 +431,7 @@ def tas_secici_fonk_7x7_tasli():
                 sayi=random.randint(0,6)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(2):
             index_sec=[0,1]
@@ -460,7 +441,7 @@ def tas_secici_fonk_7x7_tasli():
                 sayi=random.randint(0,6)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(4):
             index_sec=[2,3]
@@ -470,9 +451,9 @@ def tas_secici_fonk_7x7_tasli():
                 sayi=random.randint(0,6)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
-    elif random_secici_liste[0]==1:
+    elif c.random_secici_liste[0]==1:
 
         for i in range(3):
             index_sec = [5,6]
@@ -483,7 +464,7 @@ def tas_secici_fonk_7x7_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(3):
             index_sec = [3,4]
@@ -494,7 +475,7 @@ def tas_secici_fonk_7x7_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(2):
             index_sec = [2, 3]
@@ -505,7 +486,7 @@ def tas_secici_fonk_7x7_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
         for i in range(3):
@@ -517,11 +498,11 @@ def tas_secici_fonk_7x7_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
 
-    elif random_secici_liste[0]==2:
+    elif c.random_secici_liste[0]==2:
 
         for i in range(3):
             index_sec = [2, 3]
@@ -532,7 +513,7 @@ def tas_secici_fonk_7x7_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(2):
             index_sec = [0, 1]
@@ -543,7 +524,7 @@ def tas_secici_fonk_7x7_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
         for i in range(3):
@@ -555,7 +536,7 @@ def tas_secici_fonk_7x7_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(3):
             index_sec = [3, 4]
@@ -566,22 +547,22 @@ def tas_secici_fonk_7x7_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
 def random_secici_fonk_9x9():
     a=random.randint(0,100)
     if a<=35:
-        random_secici_liste[0]=0
+        c.random_secici_liste[0]=0
     elif 35<a<=65:
-        random_secici_liste[0]=1
+        c.random_secici_liste[0]=1
     elif 65<a:
-        random_secici_liste[0]=2
+        c.random_secici_liste[0]=2
 
 def tas_secici_fonk_9x9_seyrek():
     gecici_liste = []
-    print("!!!!",random_secici_liste[0])
-    if random_secici_liste[0]==0:
+    print("!!!!",c.random_secici_liste[0])
+    if c.random_secici_liste[0]==0:
 
         for i in range(1):
             index_sec=[0,1]
@@ -591,7 +572,7 @@ def tas_secici_fonk_9x9_seyrek():
                 sayi=random.randint(0,8)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(4):
             index_sec=[2,3,4]
@@ -601,7 +582,7 @@ def tas_secici_fonk_9x9_seyrek():
                 sayi=random.randint(0,8)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(4):
             index_sec=[4,5,6]
@@ -611,7 +592,7 @@ def tas_secici_fonk_9x9_seyrek():
                 sayi=random.randint(0,8)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(1):
             index_sec=[7,8]
@@ -621,9 +602,9 @@ def tas_secici_fonk_9x9_seyrek():
                 sayi=random.randint(0,8)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
-    elif random_secici_liste[0]==1:
+    elif c.random_secici_liste[0]==1:
 
         for i in range(2):
             index_sec = [0,1]
@@ -634,7 +615,7 @@ def tas_secici_fonk_9x9_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(4):
             index_sec = [2,3,4]
@@ -645,7 +626,7 @@ def tas_secici_fonk_9x9_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(2):
             index_sec = [4,5,6]
@@ -656,7 +637,7 @@ def tas_secici_fonk_9x9_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
         for i in range(2):
@@ -668,11 +649,11 @@ def tas_secici_fonk_9x9_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
 
-    elif random_secici_liste[0]==2:
+    elif c.random_secici_liste[0]==2:
 
         for i in range(3):
             index_sec = [0,1]
@@ -683,7 +664,7 @@ def tas_secici_fonk_9x9_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(2):
             index_sec = [2,3,4]
@@ -694,7 +675,7 @@ def tas_secici_fonk_9x9_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
         for i in range(2):
@@ -706,7 +687,7 @@ def tas_secici_fonk_9x9_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(3):
             index_sec = [7,8]
@@ -717,13 +698,13 @@ def tas_secici_fonk_9x9_seyrek():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
 def tas_secici_fonk_9x9_tasli():
     gecici_liste = []
 
-    if random_secici_liste[0]==0:
+    if c.random_secici_liste[0]==0:
 
         for i in range(3):
             index_sec=[0,1]
@@ -733,7 +714,7 @@ def tas_secici_fonk_9x9_tasli():
                 sayi=random.randint(0,8)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(6):
             index_sec=[2,3,4]
@@ -743,7 +724,7 @@ def tas_secici_fonk_9x9_tasli():
                 sayi=random.randint(0,8)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(6):
             index_sec=[4,5,6]
@@ -753,7 +734,7 @@ def tas_secici_fonk_9x9_tasli():
                 sayi=random.randint(0,8)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
         for i in range(3):
             index_sec=[7,8]
@@ -763,9 +744,9 @@ def tas_secici_fonk_9x9_tasli():
                 sayi=random.randint(0,8)
                 sutun = random.choice(index_sec)
             gecici_liste.append((sayi,sutun))
-            matrix[sayi][sutun]=-1
+            c.matrix[sayi][sutun]=-1
 
-    elif random_secici_liste[0]==1:
+    elif c.random_secici_liste[0]==1:
 
         for i in range(4):
             index_sec = [0,1]
@@ -776,7 +757,7 @@ def tas_secici_fonk_9x9_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(4):
             index_sec = [2,3,4]
@@ -787,7 +768,7 @@ def tas_secici_fonk_9x9_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(5):
             index_sec = [4,5,6]
@@ -798,7 +779,7 @@ def tas_secici_fonk_9x9_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
         for i in range(5):
@@ -810,11 +791,11 @@ def tas_secici_fonk_9x9_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
 
-    elif random_secici_liste[0]==2:
+    elif c.random_secici_liste[0]==2:
 
         for i in range(5):
             index_sec = [0,1]
@@ -825,7 +806,7 @@ def tas_secici_fonk_9x9_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(4):
             index_sec = [2,3,4]
@@ -836,7 +817,7 @@ def tas_secici_fonk_9x9_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
         for i in range(4):
@@ -848,7 +829,7 @@ def tas_secici_fonk_9x9_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
         for i in range(5):
             index_sec = [7,8]
@@ -859,12 +840,11 @@ def tas_secici_fonk_9x9_tasli():
                 sutun = random.choice(index_sec)
 
             gecici_liste.append((sayi, sutun))
-            matrix[sayi][sutun] = -1
+            c.matrix[sayi][sutun] = -1
 
 
 def oyun_harita_7x7_fonk():
-    global buton_list,secim_sayisi
-    buton_list = []
+    c.buton_list = []
     tahta=tk.Tk()
     tahta.title("Köprü Bağlamaca")
 
@@ -898,59 +878,58 @@ def oyun_harita_7x7_fonk():
     for i in range(49):
         if i%7==0:
             if len(gec_liste)!=0:
-                buton_list.append(gec_liste)
+                c.buton_list.append(gec_liste)
             gec_liste=[]
             rex=600
             rey+=85
         blok_00 = tk.Button(tahta,text=isimler_list[i], bg="blue", fg="white", width=8, height=5, command=fonks_list[i])
-        if oyun_sonu_tahta:
+        if c.oyun_sonu_tahta:
             blok_00.config(state=tk.DISABLED)
         blok_00.place(x=rex,y=rey)
         rex += 66
         gec_liste.append(blok_00)
-    buton_list.append(gec_liste)
+    c.buton_list.append(gec_liste)
     for i in range(7):
         for j in range(7):
-            if matrix[i][j]==-1:
-                buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
+            if c.matrix[i][j]==-1:
+                c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
 
-    if oyun_sonu_tahta:
-        for i in range(len(matrix)):
-            for j in range(len(matrix)):
-                if matrix[i][j]>=1:
-                    buton_list[i][j].config(bg="pink")
+    if c.oyun_sonu_tahta:
+        for i in range(len(c.matrix)):
+            for j in range(len(c.matrix)):
+                if c.matrix[i][j]>=1:
+                    c.buton_list[i][j].config(bg="pink")
         yol_var_mi_fonk(0,0)
-        dosya2=open("matrix_2.txt", "r")
+        dosya2=open("matrix/matrix_2.txt", "r")
         skor_matrix_yazdir = matrix_okuma(dosya2)
         dosya2.close()
         print("!!",skor_matrix_yazdir)
 
         ortadan_secmis_mi=False
         #Orta elemana kadar gidilmediyse ilk oyuncunun suçudur
-        for i in secim_liste_1:
+        for i in c.secim_liste_1:
             if i[1]==3:
                 ortadan_secmis_mi=True
 
 
 
-        if yol_var_mi:
+        if c.yol_var_mi:
             messagebox.showinfo("Durum","Kazandınız...")
-            for i in secim_liste_2:
+            for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]]+=1
         elif ortadan_secmis_mi:
             messagebox.showinfo("Durum","Kaybettiniz")
-            for i in secim_liste_2:
+            for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]]-=1
 
-        dosya1 = open("matrix_2.txt", "w")
+        dosya1 = open("matrix/matrix_2.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
 
     tahta.mainloop()
 
 def oyun_harita_5x5_fonk():
-    global buton_list,secim_sayisi
-    buton_list = []
+    c.buton_list = []
     tahta=tk.Tk()
     tahta.title("Köprü Bağlamaca")
 
@@ -975,65 +954,64 @@ def oyun_harita_5x5_fonk():
                 degistir40, degistir41, degistir42, degistir43, degistir44]
 
 
-
+    print("aa")
     for i in range(25):
         if i%5==0:
             if len(gec_liste)!=0:
-                buton_list.append(gec_liste)
+                c.buton_list.append(gec_liste)
             gec_liste=[]
             rex=650
             rey+=85
         blok_00 = tk.Button(tahta,text=isimler_list[i], bg="blue", fg="white", width=8, height=5, command=fonks_list[i])
-        if oyun_sonu_tahta:
+        if c.oyun_sonu_tahta:
             blok_00.config(state=tk.DISABLED)
         blok_00.place(x=rex,y=rey)
         rex += 66
         gec_liste.append(blok_00)
 
-    buton_list.append(gec_liste)
+    c.buton_list.append(gec_liste)
 
     for i in range(5):
         for j in range(5):
-            if matrix[i][j]==-1:
-                buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
+            if c.matrix[i][j]==-1:
+                c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
 
-    if oyun_sonu_tahta:
-        for i in range(len(matrix)):
-            for j in range(len(matrix)):
-                if matrix[i][j]>=1:
-                    buton_list[i][j].config(bg="pink")
+    if c.oyun_sonu_tahta:
+        for i in range(len(c.matrix)):
+            for j in range(len(c.matrix)):
+                if c.matrix[i][j]>=1:
+                    c.buton_list[i][j].config(bg="pink")
         yol_var_mi_fonk(0,0)
-        dosya2=open("matrix_1.txt", "r")
+        dosya2=open("matrix/matrix_1.txt", "r")
         skor_matrix_yazdir = matrix_okuma(dosya2)
         dosya2.close()
         print("!!",skor_matrix_yazdir)
 
         ortadan_secmis_mi=False
         #Orta elemana kadar gidilmediyse ilk oyuncunun suçudur
-        for i in secim_liste_1:
+        for i in c.secim_liste_1:
             if i[1]==2:
                 ortadan_secmis_mi=True
 
 
 
-        if yol_var_mi:
+        if c.yol_var_mi:
             messagebox.showinfo("Durum","Kazandınız...")
-            for i in secim_liste_2:
+            for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]]+=1
         elif ortadan_secmis_mi:
             messagebox.showinfo("Durum","Kaybettiniz")
-            for i in secim_liste_2:
+            for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]]-=1
 
-        dosya1 = open("matrix_1.txt", "w")
+        dosya1 = open("matrix/matrix_1.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
 
     tahta.mainloop()
 
 def oyun_harita_9x9_fonk():
-    global buton_list,secim_sayisi
-    buton_list = []
+    c.buton_list = []
     tahta=tk.Tk()
     tahta.title("Köprü Bağlamaca")
 
@@ -1069,53 +1047,53 @@ def oyun_harita_9x9_fonk():
     for i in range(81):
         if i%9==0:
             if len(gec_liste)!=0:
-                buton_list.append(gec_liste)
+                c.buton_list.append(gec_liste)
             gec_liste=[]
             rex=550
             rey+=85
         blok_00 = tk.Button(tahta,text=isimler_list[i], bg="blue", fg="white", width=8, height=5, command=fonks_list[i])
-        if oyun_sonu_tahta:
+        if c.oyun_sonu_tahta:
             blok_00.config(state=tk.DISABLED)
         blok_00.place(x=rex,y=rey)
         rex += 66
         gec_liste.append(blok_00)
 
-    buton_list.append(gec_liste)
+    c.buton_list.append(gec_liste)
 
     for i in range(9):
         for j in range(9):
-            if matrix[i][j]==-1:
-                buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
+            if c.matrix[i][j]==-1:
+                c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
 
-    if oyun_sonu_tahta:
-        for i in range(len(matrix)):
-            for j in range(len(matrix)):
-                if matrix[i][j]>=1:
-                    buton_list[i][j].config(bg="pink")
+    if c.oyun_sonu_tahta:
+        for i in range(len(c.matrix)):
+            for j in range(len(c.matrix)):
+                if c.matrix[i][j]>=1:
+                    c.buton_list[i][j].config(bg="pink")
         yol_var_mi_fonk(0,0)
-        dosya2=open("matrix_3.txt", "r")
+        dosya2=open("matrix/matrix_3.txt", "r")
         skor_matrix_yazdir = matrix_okuma(dosya2)
         dosya2.close()
         print("!!",skor_matrix_yazdir)
 
         ortadan_secmis_mi=False
         #Orta elemana kadar gidilmediyse ilk oyuncunun suçudur
-        for i in secim_liste_1:
+        for i in c.secim_liste_1:
             if i[1]==2:
                 ortadan_secmis_mi=True
 
 
 
-        if yol_var_mi:
+        if c.yol_var_mi:
             messagebox.showinfo("Durum","Kazandınız...")
-            for i in secim_liste_2:
+            for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]]+=1
         elif ortadan_secmis_mi:
             messagebox.showinfo("Durum","Kaybettiniz")
-            for i in secim_liste_2:
+            for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]]-=1
 
-        dosya1 = open("matrix_3.txt", "w")
+        dosya1 = open("matrix/matrix_3.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
 

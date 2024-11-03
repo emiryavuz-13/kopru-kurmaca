@@ -1,66 +1,61 @@
-from PIL import Image,ImageTk
-from tkinter import messagebox
-from utils import *
-from ui import *
-import tkinter as tk
-import copy
-def izin_var_mi(i,j,oyuncu): #1. oyuncu için butona basma hakkı var mı sorgusu
-    global secim_sayisi
+import config as c
 
+def izin_var_mi(i,j,oyuncu): #1. oyuncu için butona basma hakkı var mı sorgusu
     if oyuncu==1:
         izinli_yol=0
-    elif oyuncu==2:
-        izinli_yol=harita_buyukluk-1
-    if (j==izinli_yol or denetim_matrix[i][j]!=0):
-        denetim_matrix[i][j]+=1
+    else:
+        izinli_yol=c.harita_buyukluk-1
+    if (j==izinli_yol or c.denetim_matrix[i][j]!=0):
+        c.denetim_matrix[i][j]+=1
         try:
-            denetim_matrix[i][j + 1]+=1
+            c.denetim_matrix[i][j + 1]+=1
         except:
             print("Devam")
         try:
-            denetim_matrix[i][j-1]+=1
+            c.denetim_matrix[i][j-1]+=1
         except:
             print("Devam")
         try:
-            denetim_matrix[i - 1][j + 1]+=1
+            c.denetim_matrix[i - 1][j + 1]+=1
         except:
             print("Bir şey yok devam et")
         try:
-            denetim_matrix[i-1][j]+=1
+            c.denetim_matrix[i-1][j]+=1
         except:
             print("Bir şey yok devam et")
         try:
-            denetim_matrix[i-1][j-1]+=1
+            c.denetim_matrix[i-1][j-1]+=1
         except:
             print("Bir şey yok devam et")
 
         try:
-            denetim_matrix[i + 1][j + 1] += 1
+            c.denetim_matrix[i + 1][j + 1] += 1
         except:
             print("Bir şey yok devam et")
 
         try:
-            denetim_matrix[i+1][j]+=1
+            c.denetim_matrix[i+1][j]+=1
         except:
             print("Bir şey yok devam et")
         try:
-            denetim_matrix[i+1][j-1]+=1
+            c.denetim_matrix[i+1][j-1]+=1
         except:
             print("Bir şey yok devam et")
 
-        secim_sayisi -= 1
+        c.secim_sayisi -= 1
+        print(c.secim_sayisi)
         return True
 
     return False
 
 def yol_var_mi_fonk(x,y):  #Yol var mı denetimini yapan fonks
 
-    global basladin_mi,yol_var_mi
-    if basladin_mi:
-        for i in range(len(matrix)-1):
-            if matrix[i][y]>0:
 
-                basladin_mi=False
+    if c.basladin_mi:
+        for i in range(len(c.matrix)-1):
+            if c.matrix[i][y]>0:
+
+                c.basladin_mi=False
 
                 try:
                     yol_var_mi_fonk(i-1,y+1)
@@ -75,7 +70,7 @@ def yol_var_mi_fonk(x,y):  #Yol var mı denetimini yapan fonks
                     print("!!")
 
 
-    if matrix[x][y]>0 and y!=len(matrix)-1 and x!=len(matrix)-1:
+    if c.matrix[x][y]>0 and y!=len(c.matrix)-1 and x!=len(c.matrix)-1:
 
         try:
             if x!=0:
@@ -89,55 +84,55 @@ def yol_var_mi_fonk(x,y):  #Yol var mı denetimini yapan fonks
 
         yol_var_mi_fonk(x+1,y+1)
 
-    if y==len(matrix)-1 and matrix[x][y]>0:
+    if y==len(c.matrix)-1 and c.matrix[x][y]>0:
 
-        yol_var_mi=True
+        c.yol_var_mi=True
+
 
 
 def skor_hesaplama_fonk():
-    boyut=len(skor_matrix)
-    global matrix_okuma_bool,skor_hesaplama_bool
-    if skor_hesaplama_bool: #İlk girişince taşlara -1 değerini ver bi daha buraya girme
+    boyut=len(c.skor_matrix)
+    if c.skor_hesaplama_bool: #İlk girişince taşlara -1 değerini ver bi daha buraya girme
         for i in range(boyut):
             for j in range(boyut):
-                if matrix[i][j] == -1:
-                    skor_matrix[i][j] = -1
-        skor_hesaplama_bool=False
+                if c.matrix[i][j] == -1:
+                    c.skor_matrix[i][j] = -1
+        c.skor_hesaplama_bool=False
 
-    matrix_okuma_bool=False
+    c.matrix_okuma_bool=False
     uzunluk=boyut-1
     orta=int(boyut/2)+1
     for i in range(boyut):
-        if i==0 and skor_matrix[i][uzunluk-1]<0 and skor_matrix[i+1][uzunluk-1]<0:  #prnt.sc/241emm2
-            if skor_matrix[i][uzunluk]>=0:
-                matrix_okuma_bool=True
-                skor_matrix[i][uzunluk]=-2
+        if i==0 and c.skor_matrix[i][uzunluk-1]<0 and c.skor_matrix[i+1][uzunluk-1]<0:  #prnt.sc/241emm2
+            if c.skor_matrix[i][uzunluk]>=0:
+                c.matrix_okuma_bool=True
+                c.skor_matrix[i][uzunluk]=-2
 
-        if i==uzunluk and skor_matrix[i][uzunluk-1]<0 and skor_matrix[i-1][uzunluk-1]<0:  #prnt.sc/241f3ad
-            if skor_matrix[i][uzunluk] >= 0:
-                matrix_okuma_bool = True
-                skor_matrix[i][uzunluk]=-2
+        if i==uzunluk and c.skor_matrix[i][uzunluk-1]<0 and c.skor_matrix[i-1][uzunluk-1]<0:  #prnt.sc/241f3ad
+            if c.skor_matrix[i][uzunluk] >= 0:
+                c.matrix_okuma_bool = True
+                c.skor_matrix[i][uzunluk]=-2
 
         if i>=orta-1 and i!=uzunluk: #ortadan sütundan sondan bir önceki sütuna kadar tara  prnt.sc/24502ap
             stack=0
             for j in range(boyut):
-                if skor_matrix[j][i]<0:
+                if c.skor_matrix[j][i]<0:
                    stack+=1
                 else:
                     stack=0
                 if j==1 and stack==2:
-                    if skor_matrix[0][i+1] >= 0:
-                        matrix_okuma_bool = True
-                        skor_matrix[0][i+1]=-2
+                    if c.skor_matrix[0][i+1] >= 0:
+                        c.matrix_okuma_bool = True
+                        c.skor_matrix[0][i+1]=-2
                 if stack>=3:
-                    if skor_matrix[j-1][i+1] >= 0:
-                        matrix_okuma_bool = True
-                        skor_matrix[j-1][i+1]=-2
+                    if c.skor_matrix[j-1][i+1] >= 0:
+                        c.matrix_okuma_bool = True
+                        c.skor_matrix[j-1][i+1]=-2
                 if j==boyut-1 and stack>=2:
-                    if skor_matrix[boyut-1][i+1] >= 0:
-                        matrix_okuma_bool = True
-                        skor_matrix[boyut-1][i+1]=-2
-    if matrix_okuma_bool:
+                    if c.skor_matrix[boyut-1][i+1] >= 0:
+                        c.matrix_okuma_bool = True
+                        c.skor_matrix[boyut-1][i+1]=-2
+    if c.matrix_okuma_bool:
         skor_hesaplama_fonk()
 
 
@@ -169,120 +164,11 @@ def matrix_okuma(dosyam):
     skor_matrixx.append(denetim)
     return skor_matrixx
 
-def matrix_secim():
-    global harita_buyukluk, matrix
-    if harita_buyukluk==5:
-        matrix=\
-        [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-        ]
-    elif harita_buyukluk==7:
-        matrix=\
-        [
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-        ]
-    elif harita_buyukluk==9:
-        matrix=\
-            [
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            ]
-    denetim_matrix=copy.deepcopy(matrix)
-    return matrix,denetim_matrix
 
 
-def oyun_baslangic_fonk():
-    global yapay_zeka_kontrolcusu,ikinci_oyuncu_entry,birinci_oyuncu_entry,butun,resim00,resim01,resim02,resim10,resim11,resim12,resim20,resim21,resim22,resim_label
-    butun=tk.Tk()
-    butun.geometry("1680x1050+500+200")
-    label_harita = tk.Label(butun, bg="blue", fg="yellow", text="Boyut seçimi", font="Verdana 22")
-    label_harita.place(x=225, y=50)
-    label_harita=tk.Label(butun,bg="blue",fg="yellow",text="Harita seçimi",font="Verdana 22")
-    label_harita.place(x=1170,y=50)
-    bos_deniz_buton=tk.Button(butun,bg="grey",fg="black",text="Boş deniz",font="Verdana 15",command=bos_deniz_fonk)
-    seyrek_deniz_buton=tk.Button(butun,bg="grey",fg="black",text="Seyrek taşlı deniz",font="Verdana 15",command=seyrek_tasli_deniz_fonk)
-    tasli_deniz_buton=tk.Button(butun,bg="grey",fg="black",text="Taşlı deniz",font="Verdana 15",command=tasli_deniz_fonk)
-    bos_deniz_buton.place(x=1200,y=100)
-    seyrek_deniz_buton.place(x=1200,y=150)
-    tasli_deniz_buton.place(x=1200,y=200)
-    kucuk_harita_buton=tk.Button(butun,bg="grey", fg="black",font="Verdana 15",text="5 X 5 harita",command=kucuk_harita_fonk)
-    kucuk_harita_buton.place(x=250, y=100)
-    orta_harita_buton=tk.Button(butun,bg="grey", fg="black",font="Verdana 15",text="7 X 7 harita",command=orta_harita_fonk)
-    orta_harita_buton.place(x=250, y=150)
-    buyuk_harita_buton=tk.Button(butun,bg="grey", fg="black",font="Verdana 15",text="9 X 9 harita",command=buyuk_harita_fonk)
-    buyuk_harita_buton.place(x=250, y=200)
-    isim_giriniz_label=tk.Label(butun,text="İsimlerinizi giriniz",bg="blue", fg="yellow",font="Verdana 22")
-    isim_giriniz_label.place(x=700,y=50)
-    birinci_oyunu_label=tk.Label(butun,text="Birinci oyuncu")
-    birinci_oyunu_label.place(x=670,y=120)
-    ikinci_oyuncu_label=tk.Label(butun,text="İkinci oyuncu")
-    ikinci_oyuncu_label.place(x=670,y=150)
-    birinci_oyuncu_entry=tk.Entry(butun)
-    birinci_oyuncu_entry.place(x=750,y=120)
-    ikinci_oyuncu_entry=tk.Entry(butun)
-    ikinci_oyuncu_entry.place(x=750,y=150)
-    basla_buton=tk.Button(butun,text="Başla",bg="grey",font="Verdana 20",command=basla_fonk)
-    basla_buton.place(x=760,y=220)
-    resim00=ImageTk.PhotoImage(Image.open("../../../../PycharmProjects/kopru-kurmaca/img/00.png"))
-    resim01=ImageTk.PhotoImage(Image.open("../../../../PycharmProjects/kopru-kurmaca/img/01.png"))
-    resim02=ImageTk.PhotoImage(Image.open("../../../../PycharmProjects/kopru-kurmaca/img/02.png"))
-    resim10=ImageTk.PhotoImage(Image.open("../../../../PycharmProjects/kopru-kurmaca/img/10.png"))
-    resim11=ImageTk.PhotoImage(Image.open("../../../../PycharmProjects/kopru-kurmaca/img/11.png"))
-    resim12=ImageTk.PhotoImage(Image.open("../../../../PycharmProjects/kopru-kurmaca/img/12.png"))
-    resim20=ImageTk.PhotoImage(Image.open("../../../../PycharmProjects/kopru-kurmaca/img/20.png"))
-    resim21=ImageTk.PhotoImage(Image.open("../../../../PycharmProjects/kopru-kurmaca/img/21.png"))
-    resim22=ImageTk.PhotoImage(Image.open("../../../../PycharmProjects/kopru-kurmaca/img/22.png"))
-    yapay_zeka_kontrolcusu=tk.IntVar()
-    yapay_zeka_kontrolcusu.set(0)
-    yapay_zeka_checkbuton=tk.Checkbutton(butun, variable=yapay_zeka_kontrolcusu, text="Yapay zeka aktif edilsin mi?", command=yapay_zeka_aktif_mi_fonk)
-    yapay_zeka_checkbuton.place(x=720,y=180)
-    resim_label=tk.Label(butun)
-    resim_label.place(x=600,y=300)
-    butun.mainloop()
 
-def basla_fonk():
-    global birinci_oyuncu_isim,ikinci_oyuncu_isim,yapay_zeka_tipi
 
-    birinci_oyuncu_isim = tk.Entry.get(birinci_oyuncu_entry)
-    ikinci_oyuncu_isim = tk.Entry.get(ikinci_oyuncu_entry)
-    if (len(birinci_oyuncu_isim)==0 or birinci_oyuncu_isim==" ")    or ((len(ikinci_oyuncu_isim)==0 or ikinci_oyuncu_isim[0]==" ") and yapay_zeka_tipi=="yok"):
-        messagebox.showwarning("Uyarı","Lütfen oyuncu isimlerini giriniz")
-    elif harita_tip=="secilmedi":
-        messagebox.showwarning("Uyarı","Lütfen harita tipini seçiniz")
-    elif harita_buyukluk==0:
-        messagebox.showwarning("Uyarı","Lütfen harita büyüklüğünü seçiniz")
-    else:
-        if yapay_zeka_tipi=="normal":
-            soru=messagebox.askquestion("Yapay zeka seçimi","Öğrenmiş yapay zeka aktif edilsin mi?",)
-            if soru=="yes":
-                yapay_zeka_tipi="öğrenmiş"
 
-        butun.destroy()
 
-def yapay_zeka_aktif_mi_fonk():
-    global yapay_zeka_tipi
-    if tk.IntVar.get(yapay_zeka_kontrolcusu)==0:
-        yapay_zeka_tipi="yok"
-        ikinci_oyuncu_entry.config(state="normal")
 
-    else:
-        yapay_zeka_tipi="normal"
-        ikinci_oyuncu_entry.config(state="disabled")
 
