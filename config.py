@@ -39,16 +39,16 @@ def resim_bastirici():
 
 
 def buton_renk_ayarla(boyanacak_sekme, boyanacak_buton):
-    if boyanacak_sekme == "buyukluk":
+    if boyanacak_sekme == "büyüklük":
         kucuk_harita_buton.config(bg="gray", fg="white")
         orta_harita_buton.config(bg="gray", fg="white")
         buyuk_harita_buton.config(bg="gray", fg="white")
 
-        if boyanacak_buton == "kucuk":
+        if boyanacak_buton == "küçük":
             kucuk_harita_buton.config(bg="blue", fg="white")
         elif boyanacak_buton == "orta":
             orta_harita_buton.config(bg="blue", fg="white")
-        elif boyanacak_buton == "buyuk":
+        elif boyanacak_buton == "büyük":
             buyuk_harita_buton.config(bg="blue", fg="white")
 
     elif boyanacak_sekme == "tip":
@@ -57,11 +57,11 @@ def buton_renk_ayarla(boyanacak_sekme, boyanacak_buton):
         tasli_deniz_buton.config(bg="gray", fg="white")
 
         print(boyanacak_buton)
-        if boyanacak_buton == "bos":
+        if boyanacak_buton == "boş":
             bos_deniz_buton.config(bg="blue", fg="white")
         elif boyanacak_buton == "seyrek":
             seyrek_deniz_buton.config(bg="blue", fg="white")
-        elif boyanacak_buton == "tasli":
+        elif boyanacak_buton == "taşlı":
             tasli_deniz_buton.config(bg="blue", fg="white")
 
 def bos_deniz_fonk():
@@ -91,18 +91,24 @@ def tasli_deniz_fonk():
 def kucuk_harita_fonk():
     global harita_buyukluk
     harita_buyukluk = 5
+    buton_renk_ayarla("büyüklük", "küçük")
+
     resim_bastirici()
 
 
 def orta_harita_fonk():
     global harita_buyukluk
     harita_buyukluk = 7
+    buton_renk_ayarla("büyüklük", "orta")
+
     resim_bastirici()
 
 
 def buyuk_harita_fonk():
     global harita_buyukluk
     harita_buyukluk = 9
+    buton_renk_ayarla("büyüklük", "büyük")
+
     resim_bastirici()
 
 
@@ -153,30 +159,30 @@ def oyun_baslangic_fonk():
     label_harita.place(x=225, y=50)
     label_harita = tk.Label(butun, bg="blue", fg="yellow", text="Harita seçimi", font="Verdana 22")
     label_harita.place(x=1170, y=50)
-    bos_deniz_buton = tk.Button(butun, bg="grey", fg="black", text="Boş deniz", font="Verdana 15",
+    bos_deniz_buton = tk.Button(butun, bg="grey", fg="white", text="Boş deniz", font="Verdana 15",
                                 command=bos_deniz_fonk)
-    seyrek_deniz_buton = tk.Button(butun, bg="grey", fg="black", text="Seyrek taşlı deniz", font="Verdana 15",
+    seyrek_deniz_buton = tk.Button(butun, bg="grey", fg="white", text="Seyrek taşlı deniz", font="Verdana 15",
                                    command=seyrek_tasli_deniz_fonk)
-    tasli_deniz_buton = tk.Button(butun, bg="grey", fg="black", text="Taşlı deniz", font="Verdana 15",
+    tasli_deniz_buton = tk.Button(butun, bg="grey", fg="white", text="Taşlı deniz", font="Verdana 15",
                                   command=tasli_deniz_fonk)
     bos_deniz_buton.place(x=1200, y=100)
     seyrek_deniz_buton.place(x=1200, y=150)
     tasli_deniz_buton.place(x=1200, y=200)
-    kucuk_harita_buton = tk.Button(butun, bg="grey", fg="black", font="Verdana 15", text="5 X 5 harita",
+    kucuk_harita_buton = tk.Button(butun, bg="grey", fg="white", font="Verdana 15", text="5 X 5 harita",
                                    command=kucuk_harita_fonk)
     kucuk_harita_buton.place(x=250, y=100)
-    orta_harita_buton = tk.Button(butun, bg="grey", fg="black", font="Verdana 15", text="7 X 7 harita",
+    orta_harita_buton = tk.Button(butun, bg="grey", fg="white", font="Verdana 15", text="7 X 7 harita",
                                   command=orta_harita_fonk)
     orta_harita_buton.place(x=250, y=150)
-    buyuk_harita_buton = tk.Button(butun, bg="grey", fg="black", font="Verdana 15", text="9 X 9 harita",
+    buyuk_harita_buton = tk.Button(butun, bg="grey", fg="white", font="Verdana 15", text="9 X 9 harita",
                                    command=buyuk_harita_fonk)
     buyuk_harita_buton.place(x=250, y=200)
 
     isim_giriniz_label = tk.Label(butun, text="İsimlerinizi giriniz", bg="blue", fg="yellow", font="Verdana 22")
     isim_giriniz_label.place(x=700, y=50)
-    birinci_oyunu_label = tk.Label(butun, text="Birinci oyuncu")
+    birinci_oyunu_label = tk.Label(butun, text="Birinci oyuncu", bg="blue", fg="white")
     birinci_oyunu_label.place(x=670, y=120)
-    ikinci_oyuncu_label = tk.Label(butun, text="İkinci oyuncu")
+    ikinci_oyuncu_label = tk.Label(butun, text="İkinci oyuncu", bg="blue", fg="white")
     ikinci_oyuncu_label.place(x=670, y=150)
     birinci_oyuncu_entry = tk.Entry(butun)
     birinci_oyuncu_entry.place(x=750, y=120)
@@ -195,7 +201,7 @@ def oyun_baslangic_fonk():
     resim22 = ImageTk.PhotoImage(Image.open("img/22.png"))
     yapay_zeka_kontrolcusu = tk.IntVar()
     yapay_zeka_kontrolcusu.set(0)
-    yapay_zeka_checkbuton = tk.Checkbutton(butun, variable=yapay_zeka_kontrolcusu, text="Yapay zeka aktif edilsin mi?",
+    yapay_zeka_checkbuton = tk.Checkbutton(butun, variable=yapay_zeka_kontrolcusu, text="Yapay zeka aktif edilsin mi?", bg="blue", fg="white",
                                            command=yapay_zeka_aktif_mi_fonk)
     yapay_zeka_checkbuton.place(x=720, y=180)
     resim_label = tk.Label(butun)

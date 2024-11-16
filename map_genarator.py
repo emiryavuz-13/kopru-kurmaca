@@ -848,19 +848,29 @@ def oyun_harita_7x7_fonk():
 
     #tahta.resizable(False,False)  #ilk taraf x ekseni, 2. taraf y ekseni ile oynayıp oynanamayacağını belirliyor.
     tahta.geometry("1680x1050+500+200")  #Sol taraf açılır pencere boyutu, sağ taraf bilgisayarın neresinde açılacağı
+    tahta.resizable(False, False)
+    tahta.lift()
+    tahta.attributes('-topmost', True)
+
+
     # Canvas oluştur ve arkaplan resmini yükle
     canvas = tk.Canvas(tahta, width=1680, height=1050)
     canvas.pack(fill="both", expand=True)
 
     # Arkaplan resmini yükle
-    bg_image = Image.open("img/bg.png")
-    bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)  # ANTIALIAS yerine LANCZOS kullanıyoruz
-    bg_photo = ImageTk.PhotoImage(bg_image)
+    img_str = ""
+    if c.oyun_sonu_tahta:
+        img_str = "bg3.jpg"
+    elif c.oyuncu == 1:
+        img_str = "bg1.jpg"
+    elif c.oyuncu == 2:
+        img_str = "bg2.jpg"
 
+    bg_image = Image.open("img/" + img_str)
+    bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)
+    bg_photo = ImageTk.PhotoImage(bg_image)
     # Canvas'a arkaplan resmini yerleştir
     canvas.create_image(0, 0, image=bg_photo, anchor="nw")
-    #tahta.state("zoomed") #ful ekran açar
-
     gec_liste = []
     rex = 605
     rey = 145
@@ -952,6 +962,8 @@ def oyun_harita_7x7_fonk():
     tahta.mainloop()
 
 
+
+
 def oyun_harita_5x5_fonk():
     c.buton_list = []
     tahta = tk.Tk()
@@ -959,20 +971,28 @@ def oyun_harita_5x5_fonk():
 
     #tahta.resizable(False,False)  #ilk taraf x ekseni, 2. taraf y ekseni ile oynayıp oynanamayacağını belirliyor.
     tahta.geometry("1680x1050+500+200")  #Sol taraf açılır pencere boyutu, sağ taraf bilgisayarın neresinde açılacağı
+    tahta.resizable(False, False)
+    tahta.lift()
+    tahta.attributes('-topmost', True)
 
     # Canvas oluştur ve arkaplan resmini yükle
     canvas = tk.Canvas(tahta, width=1680, height=1050)
     canvas.pack(fill="both", expand=True)
 
     # Arkaplan resmini yükle
-    bg_image = Image.open("img/bg1.jpg")
+    img_str = ""
+    if c.oyun_sonu_tahta:
+        img_str = "bg3.jpg"
+    elif c.oyuncu == 1:
+        img_str = "bg1.jpg"
+    elif c.oyuncu == 2:
+        img_str = "bg2.jpg"
+
+    bg_image = Image.open("img/" + img_str)
     bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)
     bg_photo = ImageTk.PhotoImage(bg_image)
-
     # Canvas'a arkaplan resmini yerleştir
     canvas.create_image(0, 0, image=bg_photo, anchor="nw")
-
-    #tahta.state("zoomed") #ful ekran açar
 
     gec_liste = []
     rex = 670
@@ -1067,22 +1087,31 @@ def oyun_harita_9x9_fonk():
     tahta = tk.Tk()
     tahta.title("Köprü Bağlamaca")
 
+
     #tahta.resizable(False,False)  #ilk taraf x ekseni, 2. taraf y ekseni ile oynayıp oynanamayacağını belirliyor.
     tahta.geometry("1680x1050+500+200")  #Sol taraf açılır pencere boyutu, sağ taraf bilgisayarın neresinde açılacağı
+    tahta.resizable(False, False)
+    tahta.lift()
+    tahta.attributes('-topmost', True)
 
     # Canvas oluştur ve arkaplan resmini yükle
     canvas = tk.Canvas(tahta, width=1680, height=1050)
     canvas.pack(fill="both", expand=True)
 
     # Arkaplan resmini yükle
+    img_str = ""
+    if c.oyun_sonu_tahta:
+        img_str = "bg3.jpg"
+    elif c.oyuncu == 1:
+        img_str = "bg1.jpg"
+    elif c.oyuncu == 2:
+        img_str = "bg2.jpg"
 
-    bg_image = Image.open("img/bg1.jpg")
+    bg_image = Image.open("img/" + img_str)
     bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)
     bg_photo = ImageTk.PhotoImage(bg_image)
-
     # Canvas'a arkaplan resmini yerleştir
     canvas.create_image(0, 0, image=bg_photo, anchor="nw")
-    #tahta.state("zoomed") #ful ekran açar
 
     gec_liste = []
     rex = 540
