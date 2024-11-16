@@ -965,8 +965,8 @@ def oyun_harita_5x5_fonk():
     canvas.pack(fill="both", expand=True)
 
     # Arkaplan resmini yükle
-    bg_image = Image.open("img/bg.png")
-    bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)  # ANTIALIAS yerine LANCZOS kullanıyoruz
+    bg_image = Image.open("img/bg1.jpg")
+    bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)
     bg_photo = ImageTk.PhotoImage(bg_image)
 
     # Canvas'a arkaplan resmini yerleştir
@@ -1075,7 +1075,8 @@ def oyun_harita_9x9_fonk():
     canvas.pack(fill="both", expand=True)
 
     # Arkaplan resmini yükle
-    bg_image = Image.open("img/bg2.png")
+
+    bg_image = Image.open("img/bg1.jpg")
     bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)
     bg_photo = ImageTk.PhotoImage(bg_image)
 
