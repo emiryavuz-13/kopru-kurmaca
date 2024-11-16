@@ -29,22 +29,62 @@ def resim_bastirici():
     elif harita_tip == "taşlı" and harita_buyukluk == 9:
         resim_label.config(image=resim22)
 
+    if harita_tip != "secilmedi":
+        if harita_buyukluk == 5:
+            resim_label.place(x=680, y=400)
+        elif harita_buyukluk == 7:
+            resim_label.place(x=610, y=360)
+        elif harita_buyukluk == 9:
+            resim_label.place(x=580, y=300)
+
+
+def buton_renk_ayarla(boyanacak_sekme, boyanacak_buton):
+    if boyanacak_sekme == "buyukluk":
+        kucuk_harita_buton.config(bg="gray", fg="white")
+        orta_harita_buton.config(bg="gray", fg="white")
+        buyuk_harita_buton.config(bg="gray", fg="white")
+
+        if boyanacak_buton == "kucuk":
+            kucuk_harita_buton.config(bg="blue", fg="white")
+        elif boyanacak_buton == "orta":
+            orta_harita_buton.config(bg="blue", fg="white")
+        elif boyanacak_buton == "buyuk":
+            buyuk_harita_buton.config(bg="blue", fg="white")
+
+    elif boyanacak_sekme == "tip":
+        bos_deniz_buton.config(bg="gray", fg="white")
+        seyrek_deniz_buton.config(bg="gray", fg="white")
+        tasli_deniz_buton.config(bg="gray", fg="white")
+
+        print(boyanacak_buton)
+        if boyanacak_buton == "bos":
+            bos_deniz_buton.config(bg="blue", fg="white")
+        elif boyanacak_buton == "seyrek":
+            seyrek_deniz_buton.config(bg="blue", fg="white")
+        elif boyanacak_buton == "tasli":
+            tasli_deniz_buton.config(bg="blue", fg="white")
 
 def bos_deniz_fonk():
     global harita_tip
     harita_tip = "boş"
+    buton_renk_ayarla("tip", harita_tip)
     resim_bastirici()
+
 
 
 def seyrek_tasli_deniz_fonk():
     global harita_tip
     harita_tip = "seyrek"
+    buton_renk_ayarla("tip", harita_tip)
+
     resim_bastirici()
 
 
 def tasli_deniz_fonk():
     global harita_tip
     harita_tip = "taşlı"
+    buton_renk_ayarla("tip", harita_tip)
+
     resim_bastirici()
 
 
@@ -88,9 +128,27 @@ def basla_fonk():
 
 
 def oyun_baslangic_fonk():
-    global yapay_zeka_kontrolcusu, ikinci_oyuncu_entry, birinci_oyuncu_entry, butun, resim00, resim01, resim02, resim10, resim11, resim12, resim20, resim21, resim22, resim_label, harita_tip
+    global yapay_zeka_kontrolcusu, ikinci_oyuncu_entry, birinci_oyuncu_entry, butun, resim00, resim01, resim02, \
+        resim10, resim11, resim12, resim20, resim21, resim22, resim_label, harita_tip, bos_deniz_buton, seyrek_deniz_buton,\
+        tasli_deniz_buton, kucuk_harita_buton, orta_harita_buton, buyuk_harita_buton
+
     butun = tk.Tk()
     butun.geometry("1680x1050+500+200")
+
+    # Canvas oluştur ve arkaplan resmini yükle
+    canvas = tk.Canvas(butun, width=1680, height=1050)
+    canvas.pack(fill="both", expand=True)
+
+    # Arkaplan resmini yükle
+    bg_image = Image.open("img/bg3.jpg")
+    bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)
+    bg_photo = ImageTk.PhotoImage(bg_image)
+
+    # Canvas'a arkaplan resmini yerleştir
+    canvas.create_image(0, 0, image=bg_photo, anchor="nw")
+
+    butun.resizable(False, False)
+
     label_harita = tk.Label(butun, bg="blue", fg="yellow", text="Boyut seçimi", font="Verdana 22")
     label_harita.place(x=225, y=50)
     label_harita = tk.Label(butun, bg="blue", fg="yellow", text="Harita seçimi", font="Verdana 22")
@@ -113,6 +171,7 @@ def oyun_baslangic_fonk():
     buyuk_harita_buton = tk.Button(butun, bg="grey", fg="black", font="Verdana 15", text="9 X 9 harita",
                                    command=buyuk_harita_fonk)
     buyuk_harita_buton.place(x=250, y=200)
+
     isim_giriniz_label = tk.Label(butun, text="İsimlerinizi giriniz", bg="blue", fg="yellow", font="Verdana 22")
     isim_giriniz_label.place(x=700, y=50)
     birinci_oyunu_label = tk.Label(butun, text="Birinci oyuncu")
@@ -140,7 +199,6 @@ def oyun_baslangic_fonk():
                                            command=yapay_zeka_aktif_mi_fonk)
     yapay_zeka_checkbuton.place(x=720, y=180)
     resim_label = tk.Label(butun)
-    resim_label.place(x=600, y=300)
     butun.mainloop()
 
 
