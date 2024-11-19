@@ -44,6 +44,7 @@ def izin_var_mi(i, j, oyuncu):  #1. oyuncu için butona basma hakkı var mı sor
             print("Bir şey yok devam et")
 
         c.secim_sayisi -= 1
+
         print(c.secim_sayisi)
         return True
 
