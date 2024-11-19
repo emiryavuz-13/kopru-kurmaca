@@ -48,6 +48,7 @@ def izin_var_mi(i, j, oyuncu):
             print("Bir şey yok devam et")
 
         c.secim_sayisi -= 1
+        c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
         return True
 
     return False
@@ -71,6 +72,7 @@ def degistir01():
     if c.secim_sayisi <= 0:
         messagebox.showerror("Hata", "Seçim hakkınız bitti.\nLütfen ekranı kapatıp diğer oyuncuya veriniz")
         return
+
     if izin_var_mi(0, 1, c.oyuncu):
         c.matrix[0][1] += 1
         c.buton_list[0][1].config(bg="grey", state=tk.DISABLED)

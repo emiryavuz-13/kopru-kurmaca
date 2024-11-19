@@ -910,9 +910,7 @@ def oyun_harita_7x7_fonk():
             if c.matrix[i][j] == -1:
                 c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
 
-    c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
-    label_secim_sayisi = tk.Label(tahta, bg="blue", fg="yellow", textvariable=c.label_text, font="Verdana 22")
-    label_secim_sayisi.place(x=650, y=20)
+
     if c.oyuncu == 1:
         label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
         label_harita.place(x=50, y=20)
@@ -960,7 +958,11 @@ def oyun_harita_7x7_fonk():
         dosya1 = open("matrix/matrix_2.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
-
+    else:
+        c.label_text = tk.StringVar()
+        c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
+        label_secim_sayisi = tk.Label(tahta, bg="blue", fg="yellow", textvariable=c.label_text, font="Verdana 22")
+        label_secim_sayisi.place(x=650, y=20)
     tahta.mainloop()
 
 
@@ -1079,7 +1081,11 @@ def oyun_harita_5x5_fonk():
         dosya1 = open("matrix/matrix_1.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
-
+    else:
+        c.label_text = tk.StringVar()
+        c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
+        label_secim_sayisi = tk.Label(tahta, bg="blue", fg="yellow", textvariable=c.label_text, font="Verdana 22")
+        label_secim_sayisi.place(x=650, y=20)
 
     tahta.mainloop()
 
@@ -1216,6 +1222,10 @@ def oyun_harita_9x9_fonk():
         dosya1 = open("matrix/matrix_3.txt", "w")
         dosya1.write(str(skor_matrix_yazdir))
         dosya1.close()
-
+    else:
+        c.label_text = tk.StringVar()
+        c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
+        label_secim_sayisi = tk.Label(tahta, bg="blue", fg="yellow", textvariable=c.label_text, font="Verdana 22")
+        label_secim_sayisi.place(x=650, y=20)
 
     tahta.mainloop()
