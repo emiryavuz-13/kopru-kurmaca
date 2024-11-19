@@ -298,11 +298,11 @@ resim20 = ""
 resim21 = ""
 resim22 = ""
 resim_label = ""
-label_text = "tk.StringVar()"
+label_text = ""
 oyuncu = 1
 oyun_baslangic_fonk()
 matrix, denetim_matrix = matrix_secim()
 
 sonuc_matrix = copy.deepcopy(matrix)
-secim_sayisi = int(len(matrix) / 2) + 1
+secim_sayisi = int(len(matrix) / 2)
 oyun_sonu_tahta = False
