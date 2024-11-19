@@ -961,7 +961,7 @@ def oyun_harita_7x7_fonk():
     else:
         c.label_text = tk.StringVar()
         c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
-        label_secim_sayisi = tk.Label(tahta, bg="blue", fg="yellow", textvariable=c.label_text, font="Verdana 22")
+        label_secim_sayisi = tk.Label(tahta, bg="#97d3eb", fg="black", textvariable=c.label_text, font="Verdana 22")
         label_secim_sayisi.place(x=650, y=20)
     tahta.mainloop()
 
@@ -1084,7 +1084,7 @@ def oyun_harita_5x5_fonk():
     else:
         c.label_text = tk.StringVar()
         c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
-        label_secim_sayisi = tk.Label(tahta, bg="blue", fg="yellow", textvariable=c.label_text, font="Verdana 22")
+        label_secim_sayisi = tk.Label(tahta, bg="#97d3eb", fg="black", textvariable=c.label_text, font="Verdana 22")
         label_secim_sayisi.place(x=650, y=20)
 
     tahta.mainloop()
@@ -1225,7 +1225,7 @@ def oyun_harita_9x9_fonk():
     else:
         c.label_text = tk.StringVar()
         c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
-        label_secim_sayisi = tk.Label(tahta, bg="blue", fg="yellow", textvariable=c.label_text, font="Verdana 22")
+        label_secim_sayisi = tk.Label(tahta, bg="#97d3eb", fg="black", textvariable=c.label_text, font="Verdana 22")
         label_secim_sayisi.place(x=650, y=20)
 
     tahta.mainloop()
