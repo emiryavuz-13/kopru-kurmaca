@@ -7,7 +7,8 @@ from PIL import Image, ImageTk  # Arkaplan resmini eklemek için PIL kullanıyor
 
 import tkinter as tk
 
-
+color = "#37B7C3"
+color_kaya_parcasi = "#3C3D37"
 def resim_bastirici():
     print(c.harita_tip)
     if c.harita_tip == "boş" and c.harita_buyukluk == 5:
@@ -860,11 +861,11 @@ def oyun_harita_7x7_fonk():
     # Arkaplan resmini yükle
     img_str = ""
     if c.oyun_sonu_tahta:
-        img_str = "bg3.jpg"
+        img_str = "bg3.png"
     elif c.oyuncu == 1:
-        img_str = "bg1.jpg"
+        img_str = "bg1.png"
     elif c.oyuncu == 2:
-        img_str = "bg2.jpg"
+        img_str = "bg2.png"
 
     bg_image = Image.open("img/" + img_str)
     bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)
@@ -897,7 +898,7 @@ def oyun_harita_7x7_fonk():
             gec_liste = []
             rex = 600
             rey += 85
-        blok_00 = tk.Button(tahta, text=isimler_list[i], bg="blue", fg="white", width=8, height=5,
+        blok_00 = tk.Button(tahta, text=isimler_list[i], bg=color, fg="white", width=8, height=5,
                             command=fonks_list[i])
         if c.oyun_sonu_tahta:
             blok_00.config(state=tk.DISABLED)
@@ -908,14 +909,14 @@ def oyun_harita_7x7_fonk():
     for i in range(7):
         for j in range(7):
             if c.matrix[i][j] == -1:
-                c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
+                c.buton_list[i][j].config(text="Kara \nparçası!!!", bg=color_kaya_parcasi, state=tk.DISABLED)
 
 
     if c.oyuncu == 1:
-        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
+        label_harita = tk.Label(tahta, bg="#97d3eb", fg="#3C3D37", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
         label_harita.place(x=50, y=20)
     if c.oyuncu == 2 and not c.oyun_sonu_tahta:
-        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
+        label_harita = tk.Label(tahta, bg="#97d3eb", fg="#3C3D37", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
         label_harita.place(x=1400, y=20)
 
     if c.oyun_sonu_tahta:
@@ -936,21 +937,21 @@ def oyun_harita_7x7_fonk():
                 ortadan_secmis_mi = True
 
         if c.yol_var_mi:
-            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kazandınız",
+            label_harita = tk.Label(tahta, bg=color, fg="yellow", text="Kazandınız",
                                     font="Verdana 22")
             label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kazandınız...")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] += 1
         elif ortadan_secmis_mi:
-            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+            label_harita = tk.Label(tahta, bg=color, fg="yellow", text="Kaybettiniz",
                                     font="Verdana 22")
             label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kaybettiniz, kesişim yok")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] -= 1
         else:
-            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+            label_harita = tk.Label(tahta, bg=color, fg="yellow", text="Kaybettiniz",
                                     font="Verdana 22")
             label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kaybettiniz, kimse ortaya gelemedi")
@@ -961,7 +962,7 @@ def oyun_harita_7x7_fonk():
     else:
         c.label_text = tk.StringVar()
         c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
-        label_secim_sayisi = tk.Label(tahta, bg="#97d3eb", fg="black", textvariable=c.label_text, font="Verdana 22")
+        label_secim_sayisi = tk.Label(tahta, bg="#97d3eb", fg="#3C3D37", textvariable=c.label_text, font="Verdana 22")
         label_secim_sayisi.place(x=650, y=20)
     tahta.mainloop()
 
@@ -986,11 +987,11 @@ def oyun_harita_5x5_fonk():
     # Arkaplan resmini yükle
     img_str = ""
     if c.oyun_sonu_tahta:
-        img_str = "bg3.jpg"
+        img_str = "bg3.png"
     elif c.oyuncu == 1:
-        img_str = "bg1.jpg"
+        img_str = "bg1.png"
     elif c.oyuncu == 2:
-        img_str = "bg2.jpg"
+        img_str = "bg2.png"
 
     bg_image = Image.open("img/" + img_str)
     bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)
@@ -1020,7 +1021,7 @@ def oyun_harita_5x5_fonk():
             gec_liste = []
             rex = 650
             rey += 85
-        blok_00 = tk.Button(tahta, text=isimler_list[i], bg="blue", fg="white", width=8, height=5,
+        blok_00 = tk.Button(tahta, text=isimler_list[i], bg=color, fg="white", width=8, height=5,
                             command=fonks_list[i])
         if c.oyun_sonu_tahta:
             blok_00.config(state=tk.DISABLED)
@@ -1033,19 +1034,18 @@ def oyun_harita_5x5_fonk():
     for i in range(5):
         for j in range(5):
             if c.matrix[i][j] == -1:
-                c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
-
+                c.buton_list[i][j].config(text="Kara \nparçası!!!", bg=color_kaya_parcasi, state=tk.DISABLED)
     if c.oyuncu == 1:
-        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
+        label_harita = tk.Label(tahta, bg="#97d3eb", fg="#3C3D37", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
         label_harita.place(x=50, y=20)
     if c.oyuncu == 2 and not c.oyun_sonu_tahta:
-        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
+        label_harita = tk.Label(tahta, bg="#97d3eb", fg="#3C3D37", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
         label_harita.place(x=1400, y=20)
     if c.oyun_sonu_tahta:
         for i in range(len(c.matrix)):
             for j in range(len(c.matrix)):
                 if c.matrix[i][j] >= 1:
-                    c.buton_list[i][j].config(bg="pink")
+                    c.buton_list[i][j].config(bg="#DEAA79")
         yol_var_mi_fonk(0, 0)
         dosya2 = open("matrix/matrix_1.txt", "r")
         skor_matrix_yazdir = matrix_okuma(dosya2)
@@ -1059,21 +1059,21 @@ def oyun_harita_5x5_fonk():
                 ortadan_secmis_mi = True
 
         if c.yol_var_mi:
-            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kazandınız",
+            label_harita = tk.Label(tahta, bg="#97d3eb", fg="yellow", text="Kazandınız",
                                     font="Verdana 22")
             label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kazandınız...")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] += 1
         elif ortadan_secmis_mi:
-            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+            label_harita = tk.Label(tahta, bg="#97d3eb", fg="yellow", text="Kaybettiniz",
                                     font="Verdana 22")
             label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kaybettiniz, kesişim yok")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] -= 1
         else:
-            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+            label_harita = tk.Label(tahta, bg=color, fg="yellow", text="Kaybettiniz",
                                     font="Verdana 22")
             label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kaybettiniz, kimse ortaya gelemedi")
@@ -1084,7 +1084,7 @@ def oyun_harita_5x5_fonk():
     else:
         c.label_text = tk.StringVar()
         c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
-        label_secim_sayisi = tk.Label(tahta, bg="#97d3eb", fg="black", textvariable=c.label_text, font="Verdana 22")
+        label_secim_sayisi = tk.Label(tahta, bg="#97d3eb", fg="#3C3D37", textvariable=c.label_text, font="Verdana 22")
         label_secim_sayisi.place(x=650, y=20)
 
     tahta.mainloop()
@@ -1109,11 +1109,11 @@ def oyun_harita_9x9_fonk():
     # Arkaplan resmini yükle
     img_str = ""
     if c.oyun_sonu_tahta:
-        img_str = "bg3.jpg"
+        img_str = "bg3.png"
     elif c.oyuncu == 1:
-        img_str = "bg1.jpg"
+        img_str = "bg1.png"
     elif c.oyuncu == 2:
-        img_str = "bg2.jpg"
+        img_str = "bg2.png"
 
     bg_image = Image.open("img/" + img_str)
     bg_image = bg_image.resize((1680, 1050), Image.LANCZOS)
@@ -1159,7 +1159,7 @@ def oyun_harita_9x9_fonk():
             gec_liste = []
             rex = 550
             rey += 85
-        blok_00 = tk.Button(tahta, text=isimler_list[i], bg="blue", fg="white", width=8, height=5,
+        blok_00 = tk.Button(tahta, text=isimler_list[i], bg=color, fg="white", width=8, height=5,
                             command=fonks_list[i])
         if c.oyun_sonu_tahta:
             blok_00.config(state=tk.DISABLED)
@@ -1172,13 +1172,13 @@ def oyun_harita_9x9_fonk():
     for i in range(9):
         for j in range(9):
             if c.matrix[i][j] == -1:
-                c.buton_list[i][j].config(text="Kara \nparçası!!!", bg="black", state=tk.DISABLED)
+                c.buton_list[i][j].config(text="Kara \nparçası!!!", bg=color_kaya_parcasi, state=tk.DISABLED)
 
     if c.oyuncu == 1:
-        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
+        label_harita = tk.Label(tahta, bg="#97d3eb", fg="#3C3D37", text="1. Oyuncu:" + c.birinci_oyuncu_isim, font="Verdana 22")
         label_harita.place(x=50, y=20)
     if c.oyuncu == 2 and not c.oyun_sonu_tahta:
-        label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
+        label_harita = tk.Label(tahta, bg="#97d3eb", fg="#3C3D37", text="2. Oyuncu:" + c.ikinci_oyuncu_isim , font="Verdana 22")
         label_harita.place(x=1400, y=20)
 
     if c.oyun_sonu_tahta:
@@ -1199,21 +1199,21 @@ def oyun_harita_9x9_fonk():
                 ortadan_secmis_mi = True
 
         if c.yol_var_mi:
-            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kazandınız",
+            label_harita = tk.Label(tahta, bg=color, fg="yellow", text="Kazandınız",
                                     font="Verdana 22")
             label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kazandınız...")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] += 1
         elif ortadan_secmis_mi:
-            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+            label_harita = tk.Label(tahta, bg=color, fg="yellow", text="Kaybettiniz",
                                     font="Verdana 22")
             label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kaybettiniz, kesişim yok")
             for i in c.secim_liste_2:
                 skor_matrix_yazdir[i[0]][i[1]] -= 1
         else:
-            label_harita = tk.Label(tahta, bg="blue", fg="yellow", text="Kaybettiniz",
+            label_harita = tk.Label(tahta, bg=color, fg="yellow", text="Kaybettiniz",
                                     font="Verdana 22")
             label_harita.place(x=750, y=50)
             messagebox.showinfo("Durum", "Kaybettiniz, kimse ortaya gelemedi")
@@ -1225,7 +1225,7 @@ def oyun_harita_9x9_fonk():
     else:
         c.label_text = tk.StringVar()
         c.label_text.set("Kalan Tahta Sayısı: " + str(c.secim_sayisi))
-        label_secim_sayisi = tk.Label(tahta, bg="#97d3eb", fg="black", textvariable=c.label_text, font="Verdana 22")
+        label_secim_sayisi = tk.Label(tahta, bg="#97d3eb", fg="#3C3D37", textvariable=c.label_text, font="Verdana 22")
         label_secim_sayisi.place(x=650, y=20)
 
     tahta.mainloop()
