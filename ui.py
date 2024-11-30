@@ -2,7 +2,7 @@ from btn_func import *
 import config as c
 from utils import yol_var_mi_fonk, matrix_okuma
 
-
+color = "orange"
 def oyun_harita_7x7_fonk():
     c.buton_list = []
     tahta = tk.Tk()
@@ -39,7 +39,7 @@ def oyun_harita_7x7_fonk():
             gec_liste = []
             rex = 600
             rey += 85
-        blok_00 = tk.Button(tahta, text=isimler_list[i], bg="blue", fg="white", width=8, height=5,
+        blok_00 = tk.Button(tahta, text=isimler_list[i], bg=color, fg="white", width=8, height=5,
                             command=fonks_list[i])
         if c.oyun_sonu_tahta:
             blok_00.config(state=tk.DISABLED)
@@ -116,7 +116,7 @@ def oyun_harita_5x5_fonk():
             gec_liste = []
             rex = 650
             rey += 85
-        blok_00 = tk.Button(tahta, text=isimler_list[i], bg="blue", fg="white", width=8, height=5,
+        blok_00 = tk.Button(tahta, text=isimler_list[i], bg=color, fg="white", width=8, height=5,
                             command=fonks_list[i])
         if c.oyun_sonu_tahta:
             blok_00.config(state=tk.DISABLED)
@@ -212,7 +212,7 @@ def oyun_harita_9x9_fonk():
             gec_liste = []
             rex = 550
             rey += 85
-        blok_00 = tk.Button(tahta, text=isimler_list[i], bg="blue", fg="white", width=8, height=5,
+        blok_00 = tk.Button(tahta, text=isimler_list[i], bg=color, fg="white", width=8, height=5,
                             command=fonks_list[i])
         if c.oyun_sonu_tahta:
             blok_00.config(state=tk.DISABLED)
