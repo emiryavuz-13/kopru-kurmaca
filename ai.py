@@ -56,7 +56,6 @@ def yapay_zeka_secim_fonk(secim):
             if altim < 0 and ustum < 0:
                 c.tekrar_yok = True
                 return
-
             elif altim < 0:
                 if [c.secim_liste_2[-1][0] - 1, secim] in c.secim_liste_2:
                     c.tekrar_yok = True
