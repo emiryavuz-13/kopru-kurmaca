@@ -52,7 +52,6 @@ def yapay_zeka_secim_fonk(secim):
                     altim = -1
             except:
                 altim = -2
-
             if altim < 0 and ustum < 0:
                 c.tekrar_yok = True
                 return
