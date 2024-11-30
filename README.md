@@ -67,13 +67,6 @@ Bu proje, **MIT Lisansı** ile lisanslanmıştır. İstediğiniz gibi kullanabil
 
 ---
 
-### 🖼️ Ekran Görüntüleri (Opsiyonel)  
-Ekran görüntülerini ekleyerek oyunun görselliğini sergileyebilirsiniz. Örneğin:  
-
-![Oyun Haritası](https://prnt.sc/qxmMVuddifpy)
-
----
-
 ### ⭐ Bize Destek Olun!  
 Bu projeyi beğendiyseniz, GitHub reposunu ⭐ ile işaretlemeyi unutmayın!
 
