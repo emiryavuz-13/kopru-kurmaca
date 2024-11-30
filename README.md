@@ -47,11 +47,6 @@ Köprü Bağlamaca, iki oyuncunun veya bir oyuncunun yapay zeka takım arkadaş�
 3. **Tahtaları Yerleştirin:** Oyuncular, birbirinden habersiz stratejik noktalar seçerek tahtalarını yerleştirir.  
 4. **Sonucu Görün:** Eğer iki oyuncu da geçiş yapılabilir yollar oluşturursa oyunu kazanırsınız!
 
----
-
-## 📥 İndir ve Oyna  
-Projeyi GitHub üzerinden indirip hemen oynayabilirsiniz!  
-👉 **[GitHub Projesine Git](#)**  
 
 ---
 
